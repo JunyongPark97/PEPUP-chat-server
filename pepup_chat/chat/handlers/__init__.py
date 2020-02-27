@@ -1,0 +1,1 @@
+from chat.handlers import handlers_v1, handlers_v2, handlers_v3
