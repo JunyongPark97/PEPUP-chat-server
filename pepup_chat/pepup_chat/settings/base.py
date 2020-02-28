@@ -145,7 +145,7 @@ SECRET_KEY = load_credential('SECRET_KEY', default=generate_random_secret_key())
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -210,4 +210,14 @@ DATABASE_ROUTERS = [
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
+
+# Channels
 ASGI_APPLICATION = 'pepup_chat.settings.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
